@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="home.insurance.cn.FormUI.Shared.Main" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="http://local.testxdf.cn/insurance.me/Scripts/public/css/all.css">
+    <script type="text/javascript" src="http://local.testxdf.cn/insurance.me/Scripts/public/3rdLibs/jquery/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="http://local.testxdf.cn/insurance.me/Scripts/public/js/all.js"></script>
+</head>
+<body>
+
+    <div class="j-header-wrap">
+    <div class="j-header">
+        <div class="j-header-left">欢迎来到云之保</div>
+        <div class="j-header-right"><a class="a1" href="http://local.testxdf.cn/insurance.me/FormUI/Home">登录</a>|<a class="a2" href="http://local.testxdf.cn/insurance.me/FormUI/01Account/Register">注册</a>|<a class="a3" href="http://local.testxdf.cn/insurance.me/FormUI/04Order/List">订单</a></div>
+    </div>
+</div>
+<div class="j-nav-wrap">
+    <div class="j-nav">
+        <a class="j-nav-logo" href="#"><img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/logo.png"></a>
+        <ul>
+            <li><a href="http://local.testxdf.cn/insurance.me/FormUI/Home">首页</a></li>
+            <li><a href="http://local.testxdf.cn/insurance.me/FormUI/02Product/ProductList">产品中心</a></li>
+            <li><a href="http://local.testxdf.cn/insurance.me/FormUI/03AboutUs/Introduction">关于我们</a></li>
+            <li class="last"><a href="http://local.testxdf.cn/insurance.me/FormUI/Contact">联系我们</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    
+
+
+
+<div class="j-footer-wrap">
+    <div class="j-footer">
+        <div class="j-footer-wx"><img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/j-footer-wx.jpg"></div>  
+        <div class="j-footer-service">
+            全国服务热线：<br>
+            <span>400-96168</span><br>
+            服务时间：<br>
+            周一至周日：9:00-18:00
+        </div>
+        
+        <div class="j-footer-link">
+            <a href="#">关于我们</a><span>|</span>
+            <a href="#">产品中心</a><span>|</span>
+            <a href="#">联系我们</a><span>|</span>
+            <a href="#">法律声明</a>
+        </div>
+        <p>Copyright © 2010-2014 XXXX12345.com Corporation,All Rights XXXXXXXXXXXXX </p> 
+        <p>站长统计ICP备100000000号</p>
+        <p>9XXXXXXXXXXXXXXXXXX10号二栋3</p>        
+    </div>
+</div>
+</body>
+</html>
+
+

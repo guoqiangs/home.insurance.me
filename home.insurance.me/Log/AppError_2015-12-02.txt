@@ -1,0 +1,6 @@
+
+2015/12/2 20:11:59 http://local.testxdf.cn/insurance.me/FormUI/04Order/confirm?orderid=20
+指定的 Include 路径无效。EntityType“DataSourceModel.Order_BaseInfo”未声明具有名称“Order_InsuredPerson”的导航属性。
+
+2015/12/2 20:12:29 http://local.testxdf.cn/insurance.me/FormUI/04Order/confirm?orderid=20
+指定的 Include 路径无效。EntityType“DataSourceModel.Order_BaseInfo”未声明具有名称“Order_InsuredPerson”的导航属性。

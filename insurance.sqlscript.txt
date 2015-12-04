@@ -1,0 +1,244 @@
+USE [NisMember_Archive]
+GO
+
+/****** Object:  Table [dbo].[Order_BaseInfo]    Script Date: 12/04/2015 09:48:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo]. [Order_BaseInfo] (
+       [ID] [int] IDENTITY( 1 ,1 ) NOT NULL,
+       [Channel] [tinyint] NULL,
+       [Code] [nvarchar] ( 50) NULL,
+       [AmountPayable] [decimal] ( 18, 2 ) NULL,
+       [Discount] [decimal] ( 18, 0 ) NULL,
+       [PaidAmount] [decimal] ( 18, 2 ) NULL,
+       [PayTime] [datetime] NULL,
+       [Version] [tinyint] NULL,
+       [Memo] [nvarchar] ( 50) NULL,
+       [Status] [tinyint] NULL,
+       [CreateMemberPhone] [nvarchar] ( 50) NULL,
+       [CreateMemberID] [int] NULL,
+       [CreateTime] [datetime] NULL,
+       [TradeNo] [nvarchar] ( 100) NULL,
+       [BankId] [int] NULL,
+  CONSTRAINT [PK_Order_BaseInfo] PRIMARY KEY CLUSTERED
+(
+       [ID] ASC
+) WITH ( PAD_INDEX   = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF ,ALLOW_ROW_LOCKS   = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo]. [Order_BaseInfo]   WITH CHECK ADD   CONSTRAINT[FK_Order_BaseInfo_BaseInfo_UserInfo] FOREIGN KEY ([CreateMemberID] )
+REFERENCES [dbo] . [BaseInfo_UserInfo] ( [ID])
+GO
+
+ALTER TABLE [dbo]. [Order_BaseInfo] CHECK CONSTRAINT [FK_Order_BaseInfo_BaseInfo_UserInfo]
+GO
+
+ALTER TABLE [dbo]. [Order_BaseInfo] ADD   CONSTRAINT [DF_Order_BaseInfo_CreateTime]  DEFAULT ( getdate ()) FOR [CreateTime]
+GO
+
+
+---------------------
+
+USE [NisMember_Archive]
+GO
+
+/****** Object:  Table [dbo].[Order_ItemInfo]    Script Date: 12/04/2015 09:48:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo]. [Order_ItemInfo] (
+       [ID] [int] IDENTITY( 1 ,1 ) NOT NULL,
+       [OrderID] [int] NULL,
+       [Channel] [tinyint] NULL,
+       [ProductId] [nvarchar] ( 50) NULL,
+       [AmountPayable] [decimal] ( 18, 2 ) NULL,
+       [Memo] [nvarchar] ( 500) NULL,
+       [CreateTime] [datetime] NULL,
+       [ProductName] [nvarchar] ( 50) NULL,
+  CONSTRAINT [PK_Order_ItemInfo] PRIMARY KEY CLUSTERED
+(
+       [ID] ASC
+) WITH ( PAD_INDEX   = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF ,ALLOW_ROW_LOCKS   = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo]. [Order_ItemInfo]   WITH CHECK ADD   CONSTRAINT[FK_Order_ItemInfo_Order_BaseInfo] FOREIGN KEY ([OrderID] )
+REFERENCES [dbo] . [Order_BaseInfo] ( [ID])
+GO
+
+ALTER TABLE [dbo]. [Order_ItemInfo] CHECK CONSTRAINT [FK_Order_ItemInfo_Order_BaseInfo]
+GO
+
+ALTER TABLE [dbo]. [Order_ItemInfo] ADD   CONSTRAINT [DF_Order_ItemInfo_CreateTime]  DEFAULT ( getdate ()) FOR [CreateTime]
+GO
+
+ 
+------------------------
+
+USE [NisMember_Archive]
+GO
+
+/****** Object:  Table [dbo].[Order_PolicyHolder]    Script Date: 12/04/2015 09:48:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo]. [Order_PolicyHolder] (
+       [ID] [int] IDENTITY( 1 ,1 ) NOT NULL,
+       [DomainOrderId] [nvarchar] ( 60) NULL,
+       [PolicyType] [int] NULL,
+       [ProductId] [nvarchar] ( 60) NULL,
+       [PlanId] [nvarchar] ( 50) NULL,
+       [OperateDate] [datetime] NULL,
+       [StartDate] [datetime] NULL,
+       [EndDate] [datetime] NULL,
+       [ProposalNum] [int] NULL,
+       [RationCount] [int] NULL,
+       [PersonalAmount] [decimal] ( 18, 0 ) NULL,
+       [PersonalPremium] [decimal] ( 18, 0 ) NULL,
+       [SumAmount] [decimal] ( 18, 0 ) NULL,
+       [SumPremium] [decimal] ( 18, 0 ) NULL,
+       [PolicyholderName] [nvarchar] ( 50) NULL,
+       [IdentifyType] [varchar] ( 50) NULL,
+       [IdentifyNumber] [nvarchar] ( 50) NULL,
+       [Sex] [varchar] ( 10) NULL,
+       [TelPhone] [nvarchar] ( 50) NULL,
+       [SendSMS] [varchar] ( 10) NULL,
+       [Mobile] [nvarchar] ( 50) NULL,
+       [OrderItemID] [int] NULL,
+  CONSTRAINT [PK_Order_PolicyHolder] PRIMARY KEY CLUSTERED
+(
+       [ID] ASC
+) WITH ( PAD_INDEX   = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF ,ALLOW_ROW_LOCKS   = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo]. [Order_PolicyHolder]   WITH CHECK ADD   CONSTRAINT[FK_Order_PolicyHolder_Order_ItemInfo] FOREIGN KEY ([OrderItemID] )
+REFERENCES [dbo] . [Order_ItemInfo] ( [ID])
+GO
+
+ALTER TABLE [dbo]. [Order_PolicyHolder] CHECK CONSTRAINT[FK_Order_PolicyHolder_Order_ItemInfo]
+GO
+
+ 
+----------------------
+
+USE [NisMember_Archive]
+GO
+
+/****** Object:  Table [dbo].[Order_InsuredPerson]    Script Date: 12/04/2015 09:49:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo]. [Order_InsuredPerson] (
+       [ID] [int] IDENTITY( 1 ,1 ) NOT NULL,
+       [InsuredName] [nvarchar] ( 60) NULL,
+       [IdentifyType] [nvarchar] ( 60) NULL,
+       [IdentifyNumber] [nvarchar] ( 60) NULL,
+       [Address] [nvarchar] ( 300) NULL,
+       [TelPhone] [nvarchar] ( 50) NULL,
+       [EName] [nvarchar] ( 50) NULL,
+       [Mobile] [nvarchar] ( 20) NULL,
+       [Email] [nvarchar] ( 50) NULL,
+       [Sex] [varchar] ( 50) NULL,
+       [Birthday] [nvarchar] ( 50) NULL,
+       [Bank] [nvarchar] ( 50) NULL,
+       [AccountName] [nvarchar] ( 50) NULL,
+       [Age] [int] NULL,
+       [PolicyHolderID] [int] NULL,
+  CONSTRAINT [PK_Order_InsuredPerson] PRIMARY KEY CLUSTERED
+(
+       [ID] ASC
+) WITH ( PAD_INDEX   = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF ,ALLOW_ROW_LOCKS   = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo]. [Order_InsuredPerson]   WITH CHECK ADD   CONSTRAINT[FK_Order_InsuredPerson_Order_PolicyHolder] FOREIGN KEY ([PolicyHolderID] )
+REFERENCES [dbo] . [Order_PolicyHolder] ( [ID])
+GO
+
+ALTER TABLE [dbo]. [Order_InsuredPerson] CHECK CONSTRAINT[FK_Order_InsuredPerson_Order_PolicyHolder]
+GO
+
+ 
+
+----------------------
+
+
+USE [NisMember_Archive]
+GO
+
+/****** Object:  Table [dbo].[Order_Beneficiary]    Script Date: 12/04/2015 09:49:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo]. [Order_Beneficiary] (
+       [ID] [int] IDENTITY( 1 ,1 ) NOT NULL,
+       [InsuredPersonID] [int] NULL,
+       [Age] [int] NULL,
+       [BeneficiaryName] [nvarchar] ( 60) NULL,
+       [BenefitRate] [decimal] ( 18, 2 ) NULL,
+       [Birthday] [nvarchar] ( 60) NULL,
+       [EName] [nvarchar] ( 50) NULL,
+       [Email] [nvarchar] ( 50) NULL,
+       [IdentifyNumber] [nvarchar] ( 60) NULL,
+       [IdentifyType] [nvarchar] ( 60) NULL,
+       [Mobile] [nvarchar] ( 60) NULL,
+       [Sex] [varchar] ( 10) NULL,
+       [TelPhone] [nvarchar] ( 60) NULL,
+  CONSTRAINT [PK_Order_Beneficiary] PRIMARY KEY CLUSTERED
+(
+       [ID] ASC
+) WITH ( PAD_INDEX   = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF ,ALLOW_ROW_LOCKS   = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo]. [Order_Beneficiary]   WITH CHECK ADD   CONSTRAINT[FK_Order_Beneficiary_Order_InsuredPerson] FOREIGN KEY ([InsuredPersonID] )
+REFERENCES [dbo] . [Order_InsuredPerson] ( [ID])
+GO
+
+ALTER TABLE [dbo]. [Order_Beneficiary] CHECK CONSTRAINT[FK_Order_Beneficiary_Order_InsuredPerson]
+GO
+
+  
+
+  

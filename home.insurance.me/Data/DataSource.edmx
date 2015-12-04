@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataSourceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BaseInfo_UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" />
+          <Property Name="IDCardNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Status" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Order_BaseInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Channel" Type="tinyint" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PayTime" Type="datetime" />
+          <Property Name="Version" Type="tinyint" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="CreateMemberPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateMemberID" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="TradeNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankId" Type="int" />
+        </EntityType>
+        <EntityType Name="Order_Beneficiary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsuredPersonID" Type="int" />
+          <Property Name="Age" Type="int" />
+          <Property Name="BeneficiaryName" Type="nvarchar" MaxLength="60" />
+          <Property Name="BenefitRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Birthday" Type="nvarchar" MaxLength="60" />
+          <Property Name="EName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentifyNumber" Type="nvarchar" MaxLength="60" />
+          <Property Name="IdentifyType" Type="nvarchar" MaxLength="60" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="60" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Order_InsuredPerson">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsuredName" Type="nvarchar" MaxLength="60" />
+          <Property Name="IdentifyType" Type="nvarchar" MaxLength="60" />
+          <Property Name="IdentifyNumber" Type="nvarchar" MaxLength="60" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="EName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" />
+          <Property Name="Birthday" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="PolicyHolderID" Type="int" />
+        </EntityType>
+        <EntityType Name="Order_ItemInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="Channel" Type="tinyint" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="50" />
+          <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order_PolicyHolder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DomainOrderId" Type="nvarchar" MaxLength="60" />
+          <Property Name="PolicyType" Type="int" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="60" />
+          <Property Name="PlanId" Type="nvarchar" MaxLength="50" />
+          <Property Name="OperateDate" Type="datetime" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="ProposalNum" Type="int" />
+          <Property Name="RationCount" Type="int" />
+          <Property Name="PersonalAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PersonalPremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SumAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SumPremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PolicyholderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentifyType" Type="varchar" MaxLength="50" />
+          <Property Name="IdentifyNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="TelPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SendSMS" Type="varchar" MaxLength="10" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderItemID" Type="int" />
+        </EntityType>
+        <EntityType Name="SYS_LogInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionMsg" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ActionType" Type="tinyint" />
+          <Property Name="ActionMemo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateMemberID" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Order_BaseInfo_BaseInfo_UserInfo">
+          <End Role="BaseInfo_UserInfo" Type="Self.BaseInfo_UserInfo" Multiplicity="0..1" />
+          <End Role="Order_BaseInfo" Type="Self.Order_BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo_UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_BaseInfo">
+              <PropertyRef Name="CreateMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Beneficiary_Order_InsuredPerson">
+          <End Role="Order_InsuredPerson" Type="Self.Order_InsuredPerson" Multiplicity="0..1" />
+          <End Role="Order_Beneficiary" Type="Self.Order_Beneficiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_InsuredPerson">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Beneficiary">
+              <PropertyRef Name="InsuredPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_InsuredPerson_Order_PolicyHolder">
+          <End Role="Order_PolicyHolder" Type="Self.Order_PolicyHolder" Multiplicity="0..1" />
+          <End Role="Order_InsuredPerson" Type="Self.Order_InsuredPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_PolicyHolder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_InsuredPerson">
+              <PropertyRef Name="PolicyHolderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ItemInfo_Order_BaseInfo">
+          <End Role="Order_BaseInfo" Type="Self.Order_BaseInfo" Multiplicity="0..1" />
+          <End Role="Order_ItemInfo" Type="Self.Order_ItemInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_BaseInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_ItemInfo">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_PolicyHolder_Order_ItemInfo">
+          <End Role="Order_ItemInfo" Type="Self.Order_ItemInfo" Multiplicity="0..1" />
+          <End Role="Order_PolicyHolder" Type="Self.Order_PolicyHolder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_ItemInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_PolicyHolder">
+              <PropertyRef Name="OrderItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataSourceModelStoreContainer">
+          <EntitySet Name="BaseInfo_UserInfo" EntityType="Self.BaseInfo_UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_BaseInfo" EntityType="Self.Order_BaseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Beneficiary" EntityType="Self.Order_Beneficiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_InsuredPerson" EntityType="Self.Order_InsuredPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_ItemInfo" EntityType="Self.Order_ItemInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_PolicyHolder" EntityType="Self.Order_PolicyHolder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_LogInfo" EntityType="Self.SYS_LogInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Order_BaseInfo_BaseInfo_UserInfo" Association="Self.FK_Order_BaseInfo_BaseInfo_UserInfo">
+            <End Role="BaseInfo_UserInfo" EntitySet="BaseInfo_UserInfo" />
+            <End Role="Order_BaseInfo" EntitySet="Order_BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Beneficiary_Order_InsuredPerson" Association="Self.FK_Order_Beneficiary_Order_InsuredPerson">
+            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
+            <End Role="Order_Beneficiary" EntitySet="Order_Beneficiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_InsuredPerson_Order_PolicyHolder" Association="Self.FK_Order_InsuredPerson_Order_PolicyHolder">
+            <End Role="Order_PolicyHolder" EntitySet="Order_PolicyHolder" />
+            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ItemInfo_Order_BaseInfo" Association="Self.FK_Order_ItemInfo_Order_BaseInfo">
+            <End Role="Order_BaseInfo" EntitySet="Order_BaseInfo" />
+            <End Role="Order_ItemInfo" EntitySet="Order_ItemInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_PolicyHolder_Order_ItemInfo" Association="Self.FK_Order_PolicyHolder_Order_ItemInfo">
+            <End Role="Order_ItemInfo" EntitySet="Order_ItemInfo" />
+            <End Role="Order_PolicyHolder" EntitySet="Order_PolicyHolder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataSourceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EntityMember" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SYS_LogInfo" EntityType="DataSourceModel.SYS_LogInfo" />
+          <EntitySet Name="BaseInfo_UserInfo" EntityType="DataSourceModel.BaseInfo_UserInfo" />
+          <EntitySet Name="Order_BaseInfo" EntityType="DataSourceModel.Order_BaseInfo" />
+          <EntitySet Name="Order_Beneficiary" EntityType="DataSourceModel.Order_Beneficiary" />
+          <EntitySet Name="Order_InsuredPerson" EntityType="DataSourceModel.Order_InsuredPerson" />
+          <EntitySet Name="Order_ItemInfo" EntityType="DataSourceModel.Order_ItemInfo" />
+          <EntitySet Name="Order_PolicyHolder" EntityType="DataSourceModel.Order_PolicyHolder" />
+          <AssociationSet Name="FK_Order_BaseInfo_BaseInfo_UserInfo" Association="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo">
+            <End Role="BaseInfo_UserInfo" EntitySet="BaseInfo_UserInfo" />
+            <End Role="Order_BaseInfo" EntitySet="Order_BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_ItemInfo_Order_BaseInfo" Association="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo">
+            <End Role="Order_BaseInfo" EntitySet="Order_BaseInfo" />
+            <End Role="Order_ItemInfo" EntitySet="Order_ItemInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Beneficiary_Order_InsuredPerson" Association="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson">
+            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
+            <End Role="Order_Beneficiary" EntitySet="Order_Beneficiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_InsuredPerson_Order_PolicyHolder" Association="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder">
+            <End Role="Order_PolicyHolder" EntitySet="Order_PolicyHolder" />
+            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_PolicyHolder_Order_ItemInfo" Association="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo">
+            <End Role="Order_ItemInfo" EntitySet="Order_ItemInfo" />
+            <End Role="Order_PolicyHolder" EntitySet="Order_PolicyHolder" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="SYS_LogInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionMsg" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreateMemberID" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ActionType" Type="Byte" />
+          <Property Name="ActionMemo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BaseInfo_UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Mobile" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Password" MaxLength="150" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CreateTime" Precision="3" Type="DateTime" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="IDCardNo" MaxLength="20" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Birthday" Precision="3" Type="DateTime" />
+          <Property Name="Email" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CreateIP" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="Order_BaseInfo" Relationship="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" FromRole="BaseInfo_UserInfo" ToRole="Order_BaseInfo" />
+        </EntityType>
+        <EntityType Name="Order_BaseInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Channel" Type="Byte" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayTime" Type="DateTime" Precision="3" />
+          <Property Name="Version" Type="Byte" />
+          <Property Name="Memo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="CreateMemberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateMemberID" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="TradeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankId" Type="Int32" />
+          <NavigationProperty Name="BaseInfo_UserInfo" Relationship="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" FromRole="Order_BaseInfo" ToRole="BaseInfo_UserInfo" />
+          <NavigationProperty Name="Order_ItemInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_BaseInfo" ToRole="Order_ItemInfo" />
+        </EntityType>
+        <EntityType Name="Order_Beneficiary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsuredPersonID" Type="Int32" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="BeneficiaryName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="BenefitRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Birthday" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="EName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyType" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TelPhone" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order_InsuredPerson" Relationship="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson" FromRole="Order_Beneficiary" ToRole="Order_InsuredPerson" />
+        </EntityType>
+        <EntityType Name="Order_InsuredPerson">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsuredName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyType" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="PolicyHolderID" Type="Int32" />
+          <NavigationProperty Name="Order_Beneficiary" Relationship="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson" FromRole="Order_InsuredPerson" ToRole="Order_Beneficiary" />
+          <NavigationProperty Name="Order_PolicyHolder" Relationship="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder" FromRole="Order_InsuredPerson" ToRole="Order_PolicyHolder" />
+        </EntityType>
+        <EntityType Name="Order_ItemInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="Channel" Type="Byte" />
+          <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Memo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order_BaseInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_ItemInfo" ToRole="Order_BaseInfo" />
+          <NavigationProperty Name="Order_PolicyHolder" Relationship="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo" FromRole="Order_ItemInfo" ToRole="Order_PolicyHolder" />
+        </EntityType>
+        <EntityType Name="Order_PolicyHolder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DomainOrderId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyType" Type="Int32" />
+          <Property Name="ProductId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PlanId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperateDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="ProposalNum" Type="Int32" />
+          <Property Name="RationCount" Type="Int32" />
+          <Property Name="PersonalAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PersonalPremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SumAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SumPremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PolicyholderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdentifyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SendSMS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderItemID" Type="Int32" />
+          <NavigationProperty Name="Order_InsuredPerson" Relationship="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder" FromRole="Order_PolicyHolder" ToRole="Order_InsuredPerson" />
+          <NavigationProperty Name="Order_ItemInfo" Relationship="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo" FromRole="Order_PolicyHolder" ToRole="Order_ItemInfo" />
+        </EntityType>
+        <Association Name="FK_Order_BaseInfo_BaseInfo_UserInfo">
+          <End Type="DataSourceModel.BaseInfo_UserInfo" Role="BaseInfo_UserInfo" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_BaseInfo" Role="Order_BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo_UserInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_BaseInfo">
+              <PropertyRef Name="CreateMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_ItemInfo_Order_BaseInfo">
+          <End Type="DataSourceModel.Order_BaseInfo" Role="Order_BaseInfo" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_ItemInfo" Role="Order_ItemInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_BaseInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_ItemInfo">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Beneficiary_Order_InsuredPerson">
+          <End Type="DataSourceModel.Order_InsuredPerson" Role="Order_InsuredPerson" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_Beneficiary" Role="Order_Beneficiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_InsuredPerson">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Beneficiary">
+              <PropertyRef Name="InsuredPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_InsuredPerson_Order_PolicyHolder">
+          <End Type="DataSourceModel.Order_PolicyHolder" Role="Order_PolicyHolder" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_InsuredPerson" Role="Order_InsuredPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_PolicyHolder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_InsuredPerson">
+              <PropertyRef Name="PolicyHolderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_PolicyHolder_Order_ItemInfo">
+          <End Type="DataSourceModel.Order_ItemInfo" Role="Order_ItemInfo" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_PolicyHolder" Role="Order_PolicyHolder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_ItemInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_PolicyHolder">
+              <PropertyRef Name="OrderItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataSourceModelStoreContainer" CdmEntityContainer="EntityMember">
+          <EntitySetMapping Name="SYS_LogInfo">
+            <EntityTypeMapping TypeName="DataSourceModel.SYS_LogInfo">
+              <MappingFragment StoreEntitySet="SYS_LogInfo">
+                <ScalarProperty Name="ActionMemo" ColumnName="ActionMemo" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateMemberID" ColumnName="CreateMemberID" />
+                <ScalarProperty Name="ActionMsg" ColumnName="ActionMsg" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseInfo_UserInfo">
+            <EntityTypeMapping TypeName="DataSourceModel.BaseInfo_UserInfo">
+              <MappingFragment StoreEntitySet="BaseInfo_UserInfo">
+                <ScalarProperty Name="CreateIP" ColumnName="CreateIP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_BaseInfo">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_BaseInfo">
+              <MappingFragment StoreEntitySet="Order_BaseInfo">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="TradeNo" ColumnName="TradeNo" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateMemberID" ColumnName="CreateMemberID" />
+                <ScalarProperty Name="CreateMemberPhone" ColumnName="CreateMemberPhone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Beneficiary">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_Beneficiary">
+              <MappingFragment StoreEntitySet="Order_Beneficiary">
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="IdentifyType" ColumnName="IdentifyType" />
+                <ScalarProperty Name="IdentifyNumber" ColumnName="IdentifyNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="BenefitRate" ColumnName="BenefitRate" />
+                <ScalarProperty Name="BeneficiaryName" ColumnName="BeneficiaryName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="InsuredPersonID" ColumnName="InsuredPersonID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_InsuredPerson">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_InsuredPerson">
+              <MappingFragment StoreEntitySet="Order_InsuredPerson">
+                <ScalarProperty Name="PolicyHolderID" ColumnName="PolicyHolderID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EName" ColumnName="EName" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IdentifyNumber" ColumnName="IdentifyNumber" />
+                <ScalarProperty Name="IdentifyType" ColumnName="IdentifyType" />
+                <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_ItemInfo">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_ItemInfo">
+              <MappingFragment StoreEntitySet="Order_ItemInfo">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_PolicyHolder">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_PolicyHolder">
+              <MappingFragment StoreEntitySet="Order_PolicyHolder">
+                <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="IdentifyNumber" ColumnName="IdentifyNumber" />
+                <ScalarProperty Name="IdentifyType" ColumnName="IdentifyType" />
+                <ScalarProperty Name="PolicyholderName" ColumnName="PolicyholderName" />
+                <ScalarProperty Name="SumPremium" ColumnName="SumPremium" />
+                <ScalarProperty Name="SumAmount" ColumnName="SumAmount" />
+                <ScalarProperty Name="PersonalPremium" ColumnName="PersonalPremium" />
+                <ScalarProperty Name="PersonalAmount" ColumnName="PersonalAmount" />
+                <ScalarProperty Name="RationCount" ColumnName="RationCount" />
+                <ScalarProperty Name="ProposalNum" ColumnName="ProposalNum" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="OperateDate" ColumnName="OperateDate" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+                <ScalarProperty Name="DomainOrderId" ColumnName="DomainOrderId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

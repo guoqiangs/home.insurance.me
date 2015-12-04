@@ -1,0 +1,51 @@
+
+2015/11/27 14:35:58 http://local.testxdf.cn/insurance.me/FormUI/Shared/Interface.ashx?action=GetUserByMobile&mobile=15210087916
+基础提供程序在 Open 上失败。
+
+2015/11/27 14:35:58 http://local.testxdf.cn/insurance.me/FormUI/Shared/Interface.ashx?action=GetUserByMobile&mobile=15210087916
+基础提供程序在 Open 上失败。
+
+2015/11/27 14:35:58 http://local.testxdf.cn/insurance.me/FormUI/Shared/Interface.ashx?action=GetUserByMobile&mobile=15210087916
+基础提供程序在 Open 上失败。
+
+2015/11/27 14:35:58 http://local.testxdf.cn/insurance.me/FormUI/Shared/Interface.ashx?action=GetUserByMobile&mobile=15210087916
+基础提供程序在 Open 上失败。
+
+2015/11/27 14:35:58 http://local.testxdf.cn/insurance.me/FormUI/Shared/Interface.ashx?action=GetUserByMobile&mobile=15210087916
+基础提供程序在 Open 上失败。
+
+2015/11/27 15:09:47 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected for property 'Order_BaseInfo' with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'Order_ItemInfo[0]'.
+
+2015/11/27 15:16:17 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected for property 'Order_BaseInfo' with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'Order_ItemInfo[0]'.
+
+2015/11/27 15:18:01 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+更新条目时出错。有关详细信息，请参阅内部异常。
+
+2015/11/27 15:22:22 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+更新条目时出错。有关详细信息，请参阅内部异常。
+
+2015/11/27 15:29:41 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+更新条目时出错。有关详细信息，请参阅内部异常。
+
+2015/11/27 15:32:44 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 15:32:47 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 15:33:26 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 15:35:39 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 16:02:00 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 16:52:15 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
+
+2015/11/27 17:00:27 http://local.testxdf.cn/insurance.me/FormUI/04Order/edit?productid=1
+Self referencing loop detected with type 'home.insurance.cn.Data.Order_BaseInfo'. Path 'BaseInfo_UserInfo.Order_BaseInfo'.
