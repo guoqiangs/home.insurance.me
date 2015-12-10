@@ -57,7 +57,9 @@ public partial class return_url : System.Web.UI.Page
                 //支付金额
                 string strPrice = Request.QueryString["total_fee"];
 
-
+                string alipayReturnUrlRequestLog = string.Format("alipay_return_url?out_trade_no={0}&trade_no={1}&trade_status={2}&total_fee={3}",
+                    out_trade_no, trade_no, trade_status, strPrice);
+                I.Utility.Helper.LogHelper.Info(alipayReturnUrlRequestLog);
 
                 if (Request.QueryString["trade_status"] == "TRADE_FINISHED" || Request.QueryString["trade_status"] == "TRADE_SUCCESS")
                 {

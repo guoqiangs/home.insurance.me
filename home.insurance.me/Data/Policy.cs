@@ -14,9 +14,9 @@ namespace home.insurance.cn.Data
     {
         public string AccountName { get; set; }
         public string Address { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string Bank { get; set; }
-        public List<Beneficiary> Beneficiarys { get; set; }
+        public object Beneficiarys { get; set; }
         public string Birthday { get; set; }        
         public string CreditLevel { get; set; }
         public string EName { get; set; }
@@ -137,7 +137,7 @@ namespace home.insurance.cn.Data
             _insuredInfo.Birthday = "1986-11-12";
             _insuredInfo.Bank = "中国招商银行";
             _insuredInfo.AccountName = "被保险人";
-            _insuredInfo.Age = 20 ;
+            _insuredInfo.Age = "20" ;
             _insuredInfo.LinkerName = "";
             _insuredInfo.LinkerTel = "";
             _insuredInfo.LicenseNo = "";
@@ -218,8 +218,8 @@ namespace home.insurance.cn.Data
             order.PolicyholderName = policyOrder.PolicyholderName;
             order.IdentifyType = policyOrder.IdentifyType;
             order.IdentifyNumber = policyOrder.IdentifyNumber;
-            order.Sex = policyOrder.Sex;
-            order.TelPhone = policyOrder.TelPhone;
+            order.Sex = I.Utility.Helper.DataHelper.GetString(policyOrder.Sex);
+            order.TelPhone = I.Utility.Helper.DataHelper.GetString(policyOrder.TelPhone);
             order.SendSMS = policyOrder.SendSMS;
             order.Mobile = policyOrder.Mobile;
 
@@ -236,16 +236,16 @@ namespace home.insurance.cn.Data
                 _insuredInfo.InsuredName = item.InsuredName;
                 _insuredInfo.IdentifyType = item.IdentifyType;
                 _insuredInfo.IdentifyNumber = item.IdentifyNumber;
-                _insuredInfo.Address = item.Address;
-                _insuredInfo.TelPhone = item.TelPhone;
-                _insuredInfo.EName = item.EName;
-                _insuredInfo.Mobile = item.Mobile;
-                _insuredInfo.Email = item.Email;
-                _insuredInfo.Sex = item.Sex;
-                _insuredInfo.Birthday = item.Birthday;
-                _insuredInfo.Bank = item.Bank;
-                _insuredInfo.AccountName = item.AccountName;
-                _insuredInfo.Age = item.Age.Value;
+                _insuredInfo.Address = I.Utility.Helper.DataHelper.GetString(item.Address);
+                _insuredInfo.TelPhone = I.Utility.Helper.DataHelper.GetString(item.TelPhone);
+                _insuredInfo.EName = I.Utility.Helper.DataHelper.GetString(item.EName);
+                _insuredInfo.Mobile = I.Utility.Helper.DataHelper.GetString(item.Mobile);
+                _insuredInfo.Email = I.Utility.Helper.DataHelper.GetString(item.Email);
+                _insuredInfo.Sex = I.Utility.Helper.DataHelper.GetString(item.Sex);
+                _insuredInfo.Birthday = I.Utility.Helper.DataHelper.GetString(item.Birthday);
+                _insuredInfo.Bank = I.Utility.Helper.DataHelper.GetString(item.Bank);
+                _insuredInfo.AccountName = I.Utility.Helper.DataHelper.GetString(item.AccountName);
+                _insuredInfo.Age = item.Age.HasValue ? item.Age.Value.ToString() : "";
                 _insuredInfo.LinkerName = "";
                 _insuredInfo.LinkerTel = "";
                 _insuredInfo.LicenseNo = "";
@@ -278,8 +278,11 @@ namespace home.insurance.cn.Data
 
                     beneficiaryList.Add(_beneficiary);
                 }
-                                
-                _insuredInfo.Beneficiarys = beneficiaryList;
+
+                if (beneficiaryList.Count > 0)
+                    _insuredInfo.Beneficiarys = beneficiaryList;
+                else
+                    _insuredInfo.Beneficiarys = "";
 
                 #endregion
 

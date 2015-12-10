@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 using I.Utility.Helper;
 using I.Utility.Extensions;
@@ -11,7 +12,7 @@ using home.insurance.cn.Data;
 
 namespace home.insurance.cn.FormUI._04Order
 {
-    public partial class Confirm : System.Web.UI.Page
+    public partial class Confirm : PageBase
     {
         /// <summary>
         /// 供前端页面显示具体产品信息使用
@@ -29,6 +30,9 @@ namespace home.insurance.cn.FormUI._04Order
         public string orderCode = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.CurrentUser == null)
+                Response.Redirect(ConfigurationManager.AppSettings["SiteUrl"] + "FormUI/Home");
+
             if (!this.IsPostBack)
             {
                 orderCode = this.Request.QueryString["ordercode"];
@@ -46,10 +50,7 @@ namespace home.insurance.cn.FormUI._04Order
                 viewModel.PolicyStartDate = order.Order_ItemInfo.FirstOrDefault().Order_PolicyHolder.FirstOrDefault().StartDate.ToString();
                 viewModel.PolicyEndDate = order.Order_ItemInfo.FirstOrDefault().Order_PolicyHolder.FirstOrDefault().EndDate.ToString();
                 viewModel.PolicyRationCount = order.Order_ItemInfo.FirstOrDefault().Order_PolicyHolder.FirstOrDefault().RationCount.ToString();
-                viewModel.BeneficiaryName = order.Order_ItemInfo.FirstOrDefault().Order_PolicyHolder.FirstOrDefault()
-                    .Order_InsuredPerson.FirstOrDefault()
-                    .Order_Beneficiary.FirstOrDefault()
-                    .BeneficiaryName;
+                
 
 
             }

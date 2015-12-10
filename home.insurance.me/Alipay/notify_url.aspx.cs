@@ -60,6 +60,10 @@ public partial class notify_url : System.Web.UI.Page
                 //支付金额
                 string strPrice = Request.QueryString["total_fee"];
 
+                string alipayNotifyUrlRequestLog = string.Format("alipay_notify_url?out_trade_no={0}&trade_no={1}&trade_status={2}&total_fee={3}",
+                   out_trade_no, trade_no, trade_status, strPrice);
+                I.Utility.Helper.LogHelper.Info(alipayNotifyUrlRequestLog);
+
                 if (Request.Form["trade_status"] == "TRADE_FINISHED")
                 {
                     //判断该笔订单是否在商户网站中已经做过处理

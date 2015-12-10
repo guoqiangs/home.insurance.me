@@ -7,7 +7,7 @@
         <div class="j-product-wrap">
             <ul class="j-product clearfix">
                 <div class="j-product-image">
-                    <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic01.jpg">
+                    <img src="<%=SiteUrl%>/Scripts/public/images/product/pic01.jpg">
                 </div>
                 <div class="j-product-details">
                     <h4>E保交通工具综合保险（贴心保）</h4>
@@ -16,7 +16,7 @@
                     <span class="detail02">保障期限：1年</span>
                     <span class="detail03">限购份数：3份</span>
                     <div class="buy">
-                        <a href="http://local.testxdf.cn/insurance.me/FormUI/04Order/edit.aspx?productid=1">立即投保</a>
+                        <a href="<%=SiteUrl%>/FormUI/04Order/edit.aspx?id=1">立即投保</a>
                         <p>价格：<i>¥19.90</i></p>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
         <div class="j-product-wrap">
             <ul class="j-product clearfix">
                 <div class="j-product-image">
-                    <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic02.jpg">
+                    <img src="<%=SiteUrl%>/Scripts/public/images/product/pic02.jpg">
                 </div>
                 <div class="j-product-details">
                     <h4>E保意外伤害综合保险B计划</h4>
@@ -171,7 +171,7 @@
                     <span class="detail02">保障期限：1年</span>
                     <span class="detail03">限购份数：3份</span>
                     <div class="buy">
-                        <a href="http://local.testxdf.cn/insurance.me/FormUI/04Order/edit.aspx?productid=2">立即投保</a>
+                        <a href="<%=SiteUrl%>/FormUI/04Order/edit.aspx?id=2">立即投保</a>
                         <p>价格：<i>¥66.00</i></p>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
         <div class="j-product-wrap">
             <ul class="j-product clearfix">
                 <div class="j-product-image">
-                    <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic03.jpg">
+                    <img src="<%=SiteUrl%>/Scripts/public/images/product/pic03.jpg">
                 </div>
                 <div class="j-product-details">
                     <h4>E保意外伤害综合保险C计划</h4>
@@ -340,7 +340,7 @@
                     <span class="detail02">保障期限：1年</span>
                     <span class="detail03">限购份数：3份</span>
                     <div class="buy">
-                        <a href="http://local.testxdf.cn/insurance.me/FormUI/04Order/edit.aspx?productid=3">立即投保</a>
+                        <a href="<%=SiteUrl%>/FormUI/04Order/edit.aspx?id=3">立即投保</a>
                         <p>价格：<i>¥99.00</i></p>
                     </div>
                 </div>

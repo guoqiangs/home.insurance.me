@@ -25,7 +25,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Channel" Type="tinyint" />
+          <Property Name="Channel" Type="int" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
@@ -84,12 +84,13 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" />
-          <Property Name="Channel" Type="tinyint" />
+          <Property Name="Channel" Type="int" />
           <Property Name="ProductId" Type="nvarchar" MaxLength="50" />
-          <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Memo" Type="nvarchar" MaxLength="500" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanId" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Order_PolicyHolder">
           <Key>
@@ -349,12 +350,13 @@
           <Property Name="OrderID" Type="Int32" />
           <Property Name="Channel" Type="Byte" />
           <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Memo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order_BaseInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_ItemInfo" ToRole="Order_BaseInfo" />
           <NavigationProperty Name="Order_PolicyHolder" Relationship="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo" FromRole="Order_ItemInfo" ToRole="Order_PolicyHolder" />
+          <Property Name="PlanId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Order_PolicyHolder">
           <Key>
@@ -543,6 +545,7 @@
           <EntitySetMapping Name="Order_ItemInfo">
             <EntityTypeMapping TypeName="DataSourceModel.Order_ItemInfo">
               <MappingFragment StoreEntitySet="Order_ItemInfo">
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />

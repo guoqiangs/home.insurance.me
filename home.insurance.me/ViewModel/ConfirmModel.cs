@@ -16,8 +16,7 @@ namespace home.insurance.cn.ViewModel
         public string PolicyHolderEmail { get; set; }
         public string PolicyStartDate { get; set; }
         public string PolicyEndDate { get; set; }
-        public string PolicyRationCount { get; set; }
-        public string BeneficiaryName { get; set; }
+        public string PolicyRationCount { get; set; }        
         
     }
 }

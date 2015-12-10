@@ -72,7 +72,7 @@ namespace home.insurance.cn.FormUI.Shared
 
                     try
                     {
-                        //new Util().SendRegisteSMS(mobile, new string[] { _sms, "5" });
+                        new Util().SendRegisteSMS(mobile, new string[] { _sms, "5" });
 
                         content = "1";
                         var key = "SendSMS-Mobile-" + mobile;

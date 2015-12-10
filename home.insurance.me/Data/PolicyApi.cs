@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using System.Configuration;
 using X3;
 namespace home.insurance.cn.Data
 {
@@ -21,8 +22,8 @@ namespace home.insurance.cn.Data
    /// </summary>
     public class PolicyApi
     {
-        public readonly string postUrl = "http://101.69.255.186:18600/seaway-supply-entrance/PlatformBusiness.do";
-        public readonly string SIGNKEY = "a#fe>M0*(H";
+        public readonly string postUrl = ConfigurationManager.AppSettings["ApiUrl"];
+        public readonly string SIGNKEY = ConfigurationManager.AppSettings["ApiKey"];
         /// <summary>
         /// 接口签名调试
         /// </summary>

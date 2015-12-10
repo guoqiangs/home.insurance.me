@@ -174,9 +174,7 @@
             <div class="f-title01">投保人信息</div>
             <dl class="f-text01 clearfix">
                 <dt>姓名：</dt>
-                <dd><%=viewModel.PolicyHolderName %></dd>
-                <dt>出生日期：</dt>
-                <dd>接口中没有投保人出生日期</dd>
+                <dd><%=viewModel.PolicyHolderName %></dd>                 
             </dl>
             <dl class="f-text01 clearfix">
                 <dt>证件号码：</dt>
@@ -184,16 +182,11 @@
                 <dt>手机号码：</dt>
                 <dd><%=viewModel.PolicyHolderMobile %></dd>
             </dl>
-            <dl class="f-text01 clearfix">
-                <dt>电子邮箱：</dt>
-                <dd>接口中没有投保人邮箱</dd>
-            </dl>
+            
             <div class="f-title01">保单明细</div>
             <dl class="f-text01 clearfix">
                 <dt>保险期间：</dt>
-                <dd><%=viewModel.PolicyStartDate %> - <%=viewModel.PolicyEndDate %></dd>
-                <dt>受益人：</dt>
-                <dd><%=viewModel.BeneficiaryName %></dd>
+                <dd><%=viewModel.PolicyStartDate %> - <%=viewModel.PolicyEndDate %></dd>                
             </dl>
             <dl class="f-text01 clearfix">
                 <dt>保险天数：</dt>
@@ -203,7 +196,7 @@
             </dl>
             <dl class="f-text01 clearfix">
                 <dt>投保份数：</dt>
-                <dd>1份/人</dd>
+                <dd><%=viewModel.PolicyRationCount %>份</dd>
                 <dt>发票及保单配送：</dt>
                 <dd>电子保单</dd>
             </dl>

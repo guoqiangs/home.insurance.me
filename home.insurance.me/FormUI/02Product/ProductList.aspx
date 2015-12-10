@@ -6,7 +6,7 @@
     <div class="j-product-wrap">
     <div class="j-product clearfix">
         <div class="j-product-image">
-            <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic01.jpg">
+            <img src="<%=SiteUrl%>/Scripts/public/images/product/pic01.jpg">
         </div>
         <div class="j-product-details">
             <h4>E保交通工具综合保险（贴心保）</h4>
@@ -30,7 +30,7 @@
     </div><!-- j-product end -->
     <div class="j-product clearfix">
         <div class="j-product-image">
-            <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic02.jpg">
+            <img src="<%=SiteUrl%>/Scripts/public/images/product/pic02.jpg">
         </div>
         <div class="j-product-details">
             <h4>E保意外伤害综合保险B计划</h4>
@@ -55,7 +55,7 @@
     </div><!-- j-product end -->
     <div class="j-product clearfix">
         <div class="j-product-image">
-            <img src="http://local.testxdf.cn/insurance.me/Scripts/public/images/product/pic03.jpg">
+            <img src="<%=SiteUrl%>/Scripts/public/images/product/pic03.jpg">
         </div>
         <div class="j-product-details">
             <h4>E保意外伤害综合保险C计划</h4>

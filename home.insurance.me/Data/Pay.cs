@@ -19,6 +19,10 @@ namespace home.insurance.cn.Data
         {
             ResultData resultData = new ResultData();
 
+            //支付成功，记录日志
+            string payOkLog = string.Format("[支付成功]->ordercode={0}&tradeno={1}&payaccount={2}", ordercode, tradeNo, payAccount);
+            I.Utility.Helper.LogHelper.Info(payOkLog);
+
             var service = new home.insurance.cn.Data.Repository();
             var updateResult = service.UpdatePay(ordercode,tradeNo, payAccount.ToString(), payTime, (int)EnumOrderStatus.Paid);
             if (updateResult > 0)
@@ -27,16 +31,20 @@ namespace home.insurance.cn.Data
                 //更新订单状态为已投保
                 if (result.Status == 1)
                 {
+                    string policyOkLog = string.Format("[投保成功]->ordercode={0}&tradeno={1}&payaccount={2}", ordercode, tradeNo, payAccount);
+                    I.Utility.Helper.LogHelper.Info(policyOkLog);
                     service.UpdateOrderStatus(ordercode, (int)EnumOrderStatus.Success);
                     return EnumOrderStatus.Success;                  
                 }
                 else
                 {
+                    I.Utility.Helper.LogHelper.Info(string.Format("[投保失败]->ordercode={0}&tradeno={1}&payaccount={2}", ordercode, tradeNo, payAccount));
                     return EnumOrderStatus.Paid;
                 }
             }
             else
             {
+                I.Utility.Helper.LogHelper.Info(string.Format("[支付成功-更新数据库-已支付-失败]->ordercode={0}&tradeno={1}&payaccount={2}", ordercode, tradeNo, payAccount));                
                 return EnumOrderStatus.Failed;
             }
         }

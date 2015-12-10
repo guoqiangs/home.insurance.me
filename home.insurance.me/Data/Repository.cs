@@ -220,9 +220,40 @@ namespace home.insurance.cn.Data
             {
                 using (var context = new EntityMember())
                 {
+                    var query = context.Order_BaseInfo
+                        .Include("Order_ItemInfo")
+                        .Where(c => c.CreateMemberID == userId)
+                        .OrderBy(c => c.CreateTime)
+                        .ToList();                     
+
+                    list = query.ToList();
+                }
+            }
+            catch (Exception error)
+            {
+                LogHelper.AppError(error.Message);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 获取指定订单状态的订单列表
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<Order_BaseInfo> GetOrderList(int userId,int status)
+        {
+            var list = new List<Order_BaseInfo>();
+
+            try
+            {
+                using (var context = new EntityMember())
+                {
                     var query = from f in context.Order_BaseInfo
                                 where
                                     f.CreateMemberID == userId
+                                    && f.Status == status
                                 orderby f.CreateTime descending
                                 select f;
 

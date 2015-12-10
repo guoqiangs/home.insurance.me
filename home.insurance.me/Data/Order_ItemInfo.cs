@@ -43,6 +43,8 @@ public partial class Order_ItemInfo
 
     public string ProductName { get; set; }
 
+    public string PlanId { get; set; }
+
 
 
     public virtual Order_BaseInfo Order_BaseInfo { get; set; }
