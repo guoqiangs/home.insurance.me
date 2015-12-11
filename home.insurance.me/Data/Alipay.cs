@@ -32,7 +32,8 @@ namespace home.insurance.cn.Data
             //必填
 
             //付款金额
-            string total_fee = order.AmountPayable.ToString();
+            string DebugAlipay = I.Utility.Util.GetConfigByKey("DebugAlipay");
+            string total_fee = DebugAlipay == "0" ? order.AmountPayable.ToString() : "0.01";
             //必填
 
             //订单描述

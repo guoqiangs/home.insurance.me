@@ -302,9 +302,9 @@ namespace home.insurance.cn.Data
                 using (var context = new EntityMember())
                 {
                     userInfo = (from x in context.BaseInfo_UserInfo
-                                   where
-                                        x.ID == id
-                                   select x).FirstOrDefault();
+                                where
+                                     x.ID == id
+                                select x).FirstOrDefault();
                 }
 
                 this.AddLog(JsonConvert.SerializeObject(userInfo), "根据ID查询用户", 18, id);
@@ -339,7 +339,41 @@ namespace home.insurance.cn.Data
             }
         }
 
-        public int GetUserInfoByMobile(string mobile,string ip)
+        public void UpdateUserPassword(string mobile, string password)
+        {
+            if (mobile.IsNull() || password.IsNull())
+                return;
+
+            try
+            {
+                var userId = 0;
+                using (var context = new EntityMember())
+                {
+                    var userInfo = (from x in context.BaseInfo_UserInfo
+                                    where
+                                     x.Mobile == mobile
+                                    select x).FirstOrDefault();
+
+                    if (userInfo != null)
+                    {
+                        userInfo.Password = password;
+                        userId = userInfo.ID;
+                    }
+
+
+
+                    context.SaveChanges();
+                }
+
+                this.AddLog("用户：" + mobile + "修改密码：" + password, "修改密码", 50, userId);
+            }
+            catch (Exception error)
+            {
+                LogHelper.AppError(error.Message);
+            }
+        }
+
+        public int GetUserInfoByMobile(string mobile, string ip)
         {
             var returnValue = 0;
             if (mobile.IsNull())
@@ -368,18 +402,23 @@ namespace home.insurance.cn.Data
         public int Login(BaseInfo_UserInfo userInfo)
         {
             var returnValue = 0;
-            if (userInfo != null)
+            if (userInfo == null)
                 return returnValue;
 
             try
             {
                 using (var context = new EntityMember())
                 {
-                    returnValue = (from x in context.BaseInfo_UserInfo
-                                   where
-                                        x.Mobile == userInfo.Mobile &&
-                                        x.Password == userInfo.Password
-                                   select x).Count();
+                    var baseUser = (from x in context.BaseInfo_UserInfo
+                                    where
+                                         x.Mobile == userInfo.Mobile
+                                    //&&
+                                    //x.Password == userInfo.Password
+                                    select x).FirstOrDefault();
+
+                    returnValue = baseUser.Password == userInfo.Password ? baseUser.ID : 0;
+
+                    LogHelper.Info("手机号：" + userInfo.Mobile + "原密码：" + baseUser.Password + "输入密码：" + userInfo.Password);
                 }
 
                 this.AddLog(
@@ -396,7 +435,8 @@ namespace home.insurance.cn.Data
         }
 
 
-        
+
+
 
 
 

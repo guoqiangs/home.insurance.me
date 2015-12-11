@@ -36,24 +36,31 @@ namespace home.insurance.cn.FormUI._04Order
             
             //更新支付银行
             new Repository().UpdateOrderPayBank(orderCode, (int)EnumBank.Alipay);
+                        
+            var DebugPolicy = I.Utility.Util.GetConfigByKey("DebugPolicy");
+            if (DebugPolicy == "1")
+            {
+                #region TODO by guoqiangs 开发跳过支付宝，直接支付成功，走后续投保操作 
+
+                order = new Repository().GetOrderByCode(orderCode);
+
+                string trade_no = "模拟支付宝返回交易码";//模拟支付宝支付成功返回交易码
+                var status = home.insurance.cn.Data.Pay.Do(order.Code, trade_no, order.AmountPayable.ToString(), DateTime.Now);
+                Response.Write(status.ToString());
+
+                #endregion
+            }
+            else
+            {
+                #region TODO by guoqiangs 上线替换成链接支付宝
+
+                order = new Repository().GetOrderByCode(orderCode);
+                var response = Alipay.CreateRequest(order);
+                Response.Write(response);
+                #endregion
+            }
 
 
-            #region TODO by guoqiangs 开发跳过支付宝，直接支付成功，走后续投保操作 
-
-            //order = new Repository().GetOrderByCode(orderCode);
-
-            //string trade_no = "模拟支付宝返回交易码";//模拟支付宝支付成功返回交易码
-            //var status = home.insurance.cn.Data.Pay.Do(order.Code, trade_no, order.AmountPayable.ToString(), DateTime.Now);
-            //Response.Write(status.ToString());
-
-            #endregion
-
-            #region TODO by guoqiangs 上线替换成链接支付宝
-
-            order = new Repository().GetOrderByCode(orderCode);
-            var response = Alipay.CreateRequest(order);
-            Response.Write(response);
-            #endregion
 
 
         }

@@ -190,6 +190,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\bank_logo2.gif" />
     <Content Include="Content\jquery.ui.accordion.css" />
     <Content Include="Content\jquery.ui.all.css" />
     <Content Include="Content\jquery.ui.autocomplete.css" />
@@ -626,7 +627,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

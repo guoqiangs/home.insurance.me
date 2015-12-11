@@ -51,7 +51,7 @@ namespace home.insurance.cn.FormUI
             count = service.Login(userInfo);
             if (count > 0)
             {
-                UtilX3.SetCookie(ConfigurationManager.AppSettings["cookieName"], userInfo.ID.ToString(), 30);
+                UtilX3.SetCookie(ConfigurationManager.AppSettings["cookieName"], count.ToString(), 30);
                 Response.Redirect("../FormUI/04Order/List");
             }
         }

@@ -54,7 +54,7 @@
             </div>
             <div class="f-bank clearfix">
                 <label>
-                    <input type="radio" checked name="bank"><img src="./public/images/bank/bank_01.png"></label>                
+                    <input type="radio" checked name="bank"><img src="../../Content/images/bank_logo2.gif" /></label>                
             </div>            
             <asp:Button Text="确认支付" CssClass="f-bank-submit" ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" />
         </div>

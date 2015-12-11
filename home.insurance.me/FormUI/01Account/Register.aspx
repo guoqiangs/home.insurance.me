@@ -27,7 +27,7 @@
             <div class="f-form">
                 <label class="f-form-label"><i>*</i>密码：</label>
                 <span class="f-form-content">
-                    <asp:TextBox ID="txtPassword" runat="server" Width="250px" data-flag="password" MaxLength="20"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" Width="250px" data-flag="password" MaxLength="20" TextMode="Password"></asp:TextBox>
                 </span>
                 <span class="f-form-tips" style="display:none" id="passowrd-tips">请输入正确密码</span>
             </div>

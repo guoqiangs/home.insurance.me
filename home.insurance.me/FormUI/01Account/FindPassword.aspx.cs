@@ -4,6 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Web.Security;
+
+using I.Utility.Helper;
+using I.Utility.Extensions;
+using X3;
+
+using home.insurance.cn.Data;
 
 namespace home.insurance.cn.FormUI._01Account
 {
@@ -12,6 +20,30 @@ namespace home.insurance.cn.FormUI._01Account
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            var ip = UtilX3.GetRealIP();
+            var password = this.txtPassword.Text.Trim();
+            var mobile = this.txtPhone.Text.Trim();
+
+            if (mobile.Length == 0 ||  password.Length == 0)
+                return;
+
+            if (mobile.Length > 11)
+                mobile = mobile.Substring(0, 11);
+
+            var service = new Repository();
+            var count = service.GetUserInfoByMobile(mobile, ip);
+            if (count == 0)
+                return;
+
+            var saltPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(ConfigurationManager.AppSettings["salt"] + password, "MD5");
+
+            service.UpdateUserPassword(mobile, saltPassword);
+
+            Response.Redirect(ConfigurationManager.AppSettings["SiteUrl"] + "FormUI/Home");
         }
     }
 }

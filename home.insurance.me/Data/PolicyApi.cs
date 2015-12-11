@@ -76,7 +76,11 @@ namespace home.insurance.cn.Data
             string sign = X3.UtilX3.Md5(input + SIGNKEY);
             param.Add("SIGN", sign);
 
-            var result = X3.WebUtilX3.DoPost(postUrl, param);            
+            var result = X3.WebUtilX3.DoPost(postUrl, param);
+
+            I.Utility.Helper.LogHelper.Info(string.Format("insuredHAInsurance-request:DomainOrderId={0}&planId={1}&productId={2}&result={3}",
+                policyOrder.DomainOrderId, policyOrder.PlanId, policyOrder.ProductId, result));
+                       
             return result;            
         }
         /// <summary>

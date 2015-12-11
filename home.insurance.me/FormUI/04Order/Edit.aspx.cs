@@ -20,8 +20,8 @@ namespace home.insurance.cn.FormUI._04Order
         public decimal PersonalAmount = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (this.CurrentUser == null)
-            //    Response.Redirect(ConfigurationManager.AppSettings["SiteUrl"] + "FormUI/Home");
+            if (this.CurrentUser == null)
+                Response.Redirect(ConfigurationManager.AppSettings["SiteUrl"] + "FormUI/Home");
 
             id = this.Request.QueryString["id"];
             switch (id)

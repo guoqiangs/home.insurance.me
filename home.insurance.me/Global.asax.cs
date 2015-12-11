@@ -17,5 +17,19 @@ namespace home.insurance.cn
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var error = this.Context.Server.GetLastError();
+            var message = "Error Caught in Application_Error event\n" +
+                "\nError in:" + Request.Url.ToString() +
+                "\nError Message:" + error.Message +
+                "\nError Source:" + error.Source +
+                "\nError Data:" + error.Data.ToString() +
+                "\nError InnerException:" + error.InnerException.ToString() +
+                "\nStack Trace:" + error.StackTrace;
+
+            I.Utility.Helper.LogHelper.AppError(message);
+        }
     }
 }

@@ -346,14 +346,17 @@
             })
         });
 
-        function checkInput() {            
+        function checkInput() {
+            var result = true;
             $("span[cid='checkspan']").each(function () {                
                 var input = $(this).find("input").val();                
                 if (input == "") {
                     $(this).find("span").show();
+                    result = false;
                     return false;
                 }
-            })            
+            })
+            return result;
         };
     </script>
 
