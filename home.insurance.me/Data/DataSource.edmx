@@ -25,10 +25,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Channel" Type="int" />
+          <Property Name="Channel" Type="tinyint" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PayTime" Type="datetime" />
           <Property Name="Version" Type="tinyint" />
@@ -84,7 +84,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" />
-          <Property Name="Channel" Type="int" />
+          <Property Name="Channel" Type="tinyint" />
           <Property Name="ProductId" Type="nvarchar" MaxLength="50" />
           <Property Name="AmountPayable" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Memo" Type="nvarchar" MaxLength="500" />
@@ -106,10 +106,10 @@
           <Property Name="EndDate" Type="datetime" />
           <Property Name="ProposalNum" Type="int" />
           <Property Name="RationCount" Type="int" />
-          <Property Name="PersonalAmount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="PersonalPremium" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="SumAmount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="SumPremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PersonalAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PersonalPremium" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SumAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SumPremium" Type="decimal" Precision="18" Scale="2" />
           <Property Name="PolicyholderName" Type="nvarchar" MaxLength="50" />
           <Property Name="IdentifyType" Type="varchar" MaxLength="50" />
           <Property Name="IdentifyNumber" Type="nvarchar" MaxLength="50" />
@@ -226,9 +226,13 @@
         <EntityContainer Name="EntityMember" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SYS_LogInfo" EntityType="DataSourceModel.SYS_LogInfo" />
           <EntitySet Name="BaseInfo_UserInfo" EntityType="DataSourceModel.BaseInfo_UserInfo" />
-          <EntitySet Name="Order_BaseInfo" EntityType="DataSourceModel.Order_BaseInfo" />
           <EntitySet Name="Order_Beneficiary" EntityType="DataSourceModel.Order_Beneficiary" />
           <EntitySet Name="Order_InsuredPerson" EntityType="DataSourceModel.Order_InsuredPerson" />
+          <AssociationSet Name="FK_Order_Beneficiary_Order_InsuredPerson" Association="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson">
+            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
+            <End Role="Order_Beneficiary" EntitySet="Order_Beneficiary" />
+          </AssociationSet>
+          <EntitySet Name="Order_BaseInfo" EntityType="DataSourceModel.Order_BaseInfo" />
           <EntitySet Name="Order_ItemInfo" EntityType="DataSourceModel.Order_ItemInfo" />
           <EntitySet Name="Order_PolicyHolder" EntityType="DataSourceModel.Order_PolicyHolder" />
           <AssociationSet Name="FK_Order_BaseInfo_BaseInfo_UserInfo" Association="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo">
@@ -238,10 +242,6 @@
           <AssociationSet Name="FK_Order_ItemInfo_Order_BaseInfo" Association="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo">
             <End Role="Order_BaseInfo" EntitySet="Order_BaseInfo" />
             <End Role="Order_ItemInfo" EntitySet="Order_ItemInfo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Beneficiary_Order_InsuredPerson" Association="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson">
-            <End Role="Order_InsuredPerson" EntitySet="Order_InsuredPerson" />
-            <End Role="Order_Beneficiary" EntitySet="Order_Beneficiary" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_InsuredPerson_Order_PolicyHolder" Association="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder">
             <End Role="Order_PolicyHolder" EntitySet="Order_PolicyHolder" />
@@ -278,28 +278,6 @@
           <Property Name="Email" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="CreateIP" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Order_BaseInfo" Relationship="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" FromRole="BaseInfo_UserInfo" ToRole="Order_BaseInfo" />
-        </EntityType>
-        <EntityType Name="Order_BaseInfo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Channel" Type="Byte" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PayTime" Type="DateTime" Precision="3" />
-          <Property Name="Version" Type="Byte" />
-          <Property Name="Memo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Byte" />
-          <Property Name="CreateMemberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateMemberID" Type="Int32" />
-          <Property Name="CreateTime" Type="DateTime" Precision="3" />
-          <Property Name="TradeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BankId" Type="Int32" />
-          <NavigationProperty Name="BaseInfo_UserInfo" Relationship="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" FromRole="Order_BaseInfo" ToRole="BaseInfo_UserInfo" />
-          <NavigationProperty Name="Order_ItemInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_BaseInfo" ToRole="Order_ItemInfo" />
         </EntityType>
         <EntityType Name="Order_Beneficiary">
           <Key>
@@ -342,6 +320,40 @@
           <NavigationProperty Name="Order_Beneficiary" Relationship="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson" FromRole="Order_InsuredPerson" ToRole="Order_Beneficiary" />
           <NavigationProperty Name="Order_PolicyHolder" Relationship="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder" FromRole="Order_InsuredPerson" ToRole="Order_PolicyHolder" />
         </EntityType>
+        <Association Name="FK_Order_Beneficiary_Order_InsuredPerson">
+          <End Type="DataSourceModel.Order_InsuredPerson" Role="Order_InsuredPerson" Multiplicity="0..1" />
+          <End Type="DataSourceModel.Order_Beneficiary" Role="Order_Beneficiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_InsuredPerson">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Beneficiary">
+              <PropertyRef Name="InsuredPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order_BaseInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Channel" Type="Byte" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AmountPayable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayTime" Type="DateTime" Precision="3" />
+          <Property Name="Version" Type="Byte" />
+          <Property Name="Memo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="CreateMemberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateMemberID" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="TradeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BankId" Type="Int32" />
+          <NavigationProperty Name="BaseInfo_UserInfo" Relationship="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" FromRole="Order_BaseInfo" ToRole="BaseInfo_UserInfo" />
+          <NavigationProperty Name="Order_ItemInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_BaseInfo" ToRole="Order_ItemInfo" />
+        </EntityType>
         <EntityType Name="Order_ItemInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -354,9 +366,9 @@
           <Property Name="Memo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlanId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Order_BaseInfo" Relationship="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" FromRole="Order_ItemInfo" ToRole="Order_BaseInfo" />
           <NavigationProperty Name="Order_PolicyHolder" Relationship="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo" FromRole="Order_ItemInfo" ToRole="Order_PolicyHolder" />
-          <Property Name="PlanId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Order_PolicyHolder">
           <Key>
@@ -372,10 +384,10 @@
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="ProposalNum" Type="Int32" />
           <Property Name="RationCount" Type="Int32" />
-          <Property Name="PersonalAmount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="PersonalPremium" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SumAmount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SumPremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PersonalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PersonalPremium" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SumAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SumPremium" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PolicyholderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdentifyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IdentifyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -408,18 +420,6 @@
             </Principal>
             <Dependent Role="Order_ItemInfo">
               <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Beneficiary_Order_InsuredPerson">
-          <End Type="DataSourceModel.Order_InsuredPerson" Role="Order_InsuredPerson" Multiplicity="0..1" />
-          <End Type="DataSourceModel.Order_Beneficiary" Role="Order_Beneficiary" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order_InsuredPerson">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Order_Beneficiary">
-              <PropertyRef Name="InsuredPersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -481,27 +481,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Order_BaseInfo">
-            <EntityTypeMapping TypeName="DataSourceModel.Order_BaseInfo">
-              <MappingFragment StoreEntitySet="Order_BaseInfo">
-                <ScalarProperty Name="BankId" ColumnName="BankId" />
-                <ScalarProperty Name="TradeNo" ColumnName="TradeNo" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="CreateMemberID" ColumnName="CreateMemberID" />
-                <ScalarProperty Name="CreateMemberPhone" ColumnName="CreateMemberPhone" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Version" ColumnName="Version" />
-                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
-                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Channel" ColumnName="Channel" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Order_Beneficiary">
             <EntityTypeMapping TypeName="DataSourceModel.Order_Beneficiary">
               <MappingFragment StoreEntitySet="Order_Beneficiary">
@@ -538,6 +517,27 @@
                 <ScalarProperty Name="IdentifyNumber" ColumnName="IdentifyNumber" />
                 <ScalarProperty Name="IdentifyType" ColumnName="IdentifyType" />
                 <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_BaseInfo">
+            <EntityTypeMapping TypeName="DataSourceModel.Order_BaseInfo">
+              <MappingFragment StoreEntitySet="Order_BaseInfo">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="TradeNo" ColumnName="TradeNo" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateMemberID" ColumnName="CreateMemberID" />
+                <ScalarProperty Name="CreateMemberPhone" ColumnName="CreateMemberPhone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="PayTime" ColumnName="PayTime" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

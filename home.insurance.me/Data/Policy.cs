@@ -198,6 +198,8 @@ namespace home.insurance.cn.Data
             var policyOrder = baseOrder.Order_ItemInfo.FirstOrDefault().Order_PolicyHolder.FirstOrDefault();
 
             PolicyOrder order = new PolicyOrder();
+            var money = double.Parse(policyOrder.PersonalPremium.Value.ToString());
+            var money2 = float.Parse(policyOrder.PersonalPremium.Value.ToString());
 
             #region PolicyOrder
             order.DomainOrderId = baseOrder.Code;
@@ -282,7 +284,8 @@ namespace home.insurance.cn.Data
                 if (beneficiaryList.Count > 0)
                     _insuredInfo.Beneficiarys = beneficiaryList;
                 else
-                    _insuredInfo.Beneficiarys = "";
+                    _insuredInfo.Beneficiarys = new List<object>();
+
 
                 #endregion
 

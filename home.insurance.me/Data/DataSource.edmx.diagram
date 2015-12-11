@@ -7,14 +7,14 @@
       <Diagram DiagramId="946c492044354f419e5623ec85b8478d" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="DataSourceModel.SYS_LogInfo" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="DataSourceModel.BaseInfo_UserInfo" PointX="0.5" PointY="9.5" Width="1.5" />
-        <EntityTypeShape EntityType="DataSourceModel.Order_BaseInfo" Width="1.5" PointX="2.75" PointY="9" />
         <EntityTypeShape EntityType="DataSourceModel.Order_Beneficiary" Width="1.5" PointX="11.75" PointY="9.25" />
         <EntityTypeShape EntityType="DataSourceModel.Order_InsuredPerson" Width="1.5" PointX="9.5" PointY="9" />
-        <EntityTypeShape EntityType="DataSourceModel.Order_ItemInfo" Width="1.5" PointX="5" PointY="9.625" />
+        <AssociationConnector Association="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson" />
+        <EntityTypeShape EntityType="DataSourceModel.Order_BaseInfo" Width="1.5" PointX="2.75" PointY="9" />
+        <EntityTypeShape EntityType="DataSourceModel.Order_ItemInfo" Width="1.5" PointX="5" PointY="9.5" />
         <EntityTypeShape EntityType="DataSourceModel.Order_PolicyHolder" Width="1.5" PointX="7.25" PointY="8.375" />
         <AssociationConnector Association="DataSourceModel.FK_Order_BaseInfo_BaseInfo_UserInfo" />
         <AssociationConnector Association="DataSourceModel.FK_Order_ItemInfo_Order_BaseInfo" />
-        <AssociationConnector Association="DataSourceModel.FK_Order_Beneficiary_Order_InsuredPerson" />
         <AssociationConnector Association="DataSourceModel.FK_Order_InsuredPerson_Order_PolicyHolder" />
         <AssociationConnector Association="DataSourceModel.FK_Order_PolicyHolder_Order_ItemInfo" />
         </Diagram>

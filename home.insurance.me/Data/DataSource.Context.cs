@@ -36,11 +36,11 @@ public partial class EntityMember : DbContext
 
     public virtual DbSet<BaseInfo_UserInfo> BaseInfo_UserInfo { get; set; }
 
-    public virtual DbSet<Order_BaseInfo> Order_BaseInfo { get; set; }
-
     public virtual DbSet<Order_Beneficiary> Order_Beneficiary { get; set; }
 
     public virtual DbSet<Order_InsuredPerson> Order_InsuredPerson { get; set; }
+
+    public virtual DbSet<Order_BaseInfo> Order_BaseInfo { get; set; }
 
     public virtual DbSet<Order_ItemInfo> Order_ItemInfo { get; set; }
 
